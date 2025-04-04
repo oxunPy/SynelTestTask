@@ -1,10 +1,51 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Employee Import";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Import Employees</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadedFile" class="form-control mb-2" required />
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+<hr />
+
+<h3>Employee Data</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Payroll</th>
+            <th>FirstName</th>
+            <th>Surname</th>
+            <th>DateofBirth</th>
+            <th>Phone</th>
+            <th>Mobile</th>
+            <th>MainAddress</th>
+            <th>SecondaryAddress</th>
+            <th>Postcode</th>
+            <th>Email</th>
+            <th>StartDate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.Employees)
+        {
+            <tr>
+                <td>@emp.PayrollNumber</td>
+                <td>@emp.ForeName</td>
+                <td>@emp.Surname</td>
+                <td>@(emp.DateOfBirth?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+                <td>@emp.Telephone</td>
+                <td>@emp.Mobile</td>
+                <td>@emp.MainAddress</td>
+                <td>@emp.SecondaryAddress</td>
+                <td>@emp.Postcode</td>
+                <td>@emp.EmailHome</td>
+                <td>@(emp.StartDate?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+            </tr>
+        }
+    </tbody>
+</table>
